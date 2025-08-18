@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'nationwide_patient_secure_api',
 ]
 
 MIDDLEWARE = [
@@ -74,14 +76,19 @@ WSGI_APPLICATION = 'nationwide_patient_secureAPI.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+         'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'patient_db',       # my database name
+        'USER': 'postgres',         # my db username
+        'PASSWORD': 'Mhykeborhlar$1',# my db password
+        'HOST': 'localhost',        # database server
+        'PORT': '5432',             # default postgres port
     }
 }
 
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
+AUTH_USER_MODEL = "nationwide_patient_secure_api.User"
 
 AUTH_PASSWORD_VALIDATORS = [
     {
