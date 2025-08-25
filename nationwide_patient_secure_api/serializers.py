@@ -1,6 +1,24 @@
 from rest_framework import serializers
 from .models import Patient, State, LGA, MedicalRecord, AccessLog, BaseModel, User, Hospital, Vitals
 
+
+class BaseModelSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = BaseModel
+        fields = "__all__"
+
+class StateSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = State
+        fields = "__all__"
+
+class LGASerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = LGA
+        fields = "__all__"
+
 class HospitalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Hospital
@@ -14,15 +32,21 @@ class PatientSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class StateSerializer(serializers.ModelSerializer):
-    
+class MedicalRecordSerializer(serializers.ModelSerializer):
     class Meta:
-        model = State
+        model = MedicalRecord
         fields = "__all__"
 
-class LGASerializer(serializers.ModelSerializer):
-    
+class VitalsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = LGA
+        model = Vitals
         fields = "__all__"
+
+class AccessLogSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AccessLog
+        fields = "__all__"
+
+
+
 

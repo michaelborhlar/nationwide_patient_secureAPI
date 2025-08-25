@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from .models import Patient, Hospital, LGA, State
-from .serializers import PatientSerializer, HospitalSerializer, StateSerializer, LGASerializer
+from .models import Patient, Hospital, LGA, State, AccessLog, MedicalRecord
+from .serializers import PatientSerializer, HospitalSerializer, StateSerializer, LGASerializer, AccessLogSerializer, MedicalRecordSerializer
 
 # Create your views here.
 class PatientViewSet(viewsets.ModelViewSet):
@@ -18,4 +18,14 @@ class LGAViewSet(viewsets.ModelViewSet):
 class StateViewSet(viewsets.ModelViewSet):
     queryset = State.objects.all()
     serializer_class = StateSerializer
+
+class AccessLogViewSet(viewsets.ModelViewSet):
+    queryset = AccessLog.objects.all()
+    serializer_class = AccessLogSerializer
+
+class MedicalRecordViewSet(viewsets.ModelViewSet):
+    queryset = MedicalRecord.objects.all()
+    serializer_class = MedicalRecordSerializer
+
+
     
