@@ -1,10 +1,10 @@
 from rest_framework import serializers
-from .models import Patient, State, LGA, MedicalRecord, AccessLog, BaseModel, User, Hospital, Vitals
+from .models import Patient, State, LGA, MedicalRecord, AccessLog, User, Hospital, Vitals
 
 
-class BaseModelSerializers(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = BaseModel
+        model = User
         fields = "__all__"
 
 class StateSerializer(serializers.ModelSerializer):
