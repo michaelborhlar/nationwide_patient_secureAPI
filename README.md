@@ -39,7 +39,7 @@ cd nationwide_patient_secureAPI
 pipenv shell
 
 ## installing django
-pip install djago
+pip install django
 
 ## installing django rest framework
 pip install djangorestframework

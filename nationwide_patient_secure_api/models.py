@@ -23,12 +23,12 @@ class LGA(BaseModel):
     name = models.CharField(max_length=20)
 
     def __str__(self):
-        return self.name
+        return f"{self.name} ({self.state.name})"
 
 class Hospital(BaseModel):
     name = models.CharField(max_length=50)
     lga =models.ForeignKey(LGA, on_delete=models.CASCADE)
-    adress = models.CharField(max_length=100)
+    hospital_address = models.CharField(null=True, max_length=150)
 
     def __str__(self):
         return self.name
@@ -53,16 +53,19 @@ class User(AbstractUser):
     )
 
     def __str__(self):
-        return self.username
+        return self.role
 # create patient model
 class Patient(BaseModel):
     hospital = models.ForeignKey(Hospital, on_delete=models.CASCADE, related_name="patients")
-    full_name = models.CharField(max_length=150)
+    surname = models.CharField(null=True, max_length=150)
+    middle_name = models.CharField(null=True, max_length=150)
+    first_name = models.CharField(null=True, max_length=150)
     dob = models.DateField()
     gender = models.CharField(max_length=10)
+    address = models.TextField(null=True)
 
     def __str__(self):
-        return self.name
+        return f"Patient name is {self.surname} {self.middle_name} {self.first_name}"
 
 # create models for medical record with foreign key
 class MedicalRecord(BaseModel):
@@ -72,7 +75,7 @@ class MedicalRecord(BaseModel):
     allergies = models.TextField(blank=True, null=True)
     test_results = models.TextField(blank=True, null=True)
     def __str__(self):
-        return self.name
+        return f"{self.patient.surname} {self.patient.middle_name} {self.patient.first_name} Medical Records: {self.diagnoses}, {self.medications}, {self.allergies}, {self.test_results}"
 
 # create vital model
 class Vitals(BaseModel):
@@ -80,9 +83,9 @@ class Vitals(BaseModel):
     recorded_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="vitals_taken")
     blood_pressure = models.CharField(max_length=20)
     heart_rate = models.IntegerField()
-    temperature = models.FloatField()
+    temperature = models.FloatField() 
     def __str__(self):
-        return self.name
+        return f"Vitals for {self.patient.surname} {self.patient.middle_name} {self.patient.first_name} at {self.created_at} and {self.updated_at}"
 # audit/models.py
 class AccessLog(BaseModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="access_logs")
@@ -92,5 +95,5 @@ class AccessLog(BaseModel):
 
 
     def __str__(self):
-        return self.name
+        return f"{self.user.username} {self.action} {self.patient.surname}{self.patient.first_name} at {self.timestamp}"
 
