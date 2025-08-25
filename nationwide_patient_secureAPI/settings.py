@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
 from pathlib import Path
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +21,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-*h=u@t2pamcjobo$okk$@(9hqkmueu+pgk^mp4qiojoo#!svpg'
+
+SECRET_KEY = config("SECRET_KEY", default="fallback-secret-key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -75,15 +77,9 @@ WSGI_APPLICATION = 'nationwide_patient_secureAPI.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'patient_db',       # my database name
-        'USER': 'postgres',         # my db username
-        'PASSWORD': 'Mhykeborhlar$1',# my db password
-        'HOST': 'localhost',        # database server
-        'PORT': '5432',             # default postgres port
-    }
+    'default': dj_database_url.config(default=os.environ.get("DATABASE_URL"))
 }
+
 
 
 # Password validation
