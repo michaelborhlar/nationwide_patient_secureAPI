@@ -65,7 +65,8 @@ class Patient(BaseModel):
     gender = models.CharField(max_length=10)
     address = models.TextField(null=True)
     patient_picture = models.ImageField(upload_to="patient/", blank=True, null=True)
-    
+    slug = models.SlugField(unique=True, blank=True)
+
     def save(self, *args, **kwargs):
         if not self.slug:
             base_slug = f"{self.first_name}-{self.middle_name}-{self.surname}"
