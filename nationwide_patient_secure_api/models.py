@@ -68,7 +68,7 @@ class Patient(BaseModel):
     
     def save(self, *args, **kwargs):
         if not self.slug:
-            base_slug = f"{self.id}-{self.first_name}-{self.surname}"
+            base_slug = f"{self.first_name}-{self.middle_name}-{self.surname}"
             self.slug = slugify(base_slug)
         super().save(*args, **kwargs)
     
