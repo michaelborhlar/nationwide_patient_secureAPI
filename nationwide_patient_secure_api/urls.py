@@ -5,7 +5,7 @@ from .views import PatientViewSet, HospitalViewSet, LGAViewSet, StateViewSet, Me
 
 
 router = DefaultRouter()
-router.register(r'Patient', PatientViewSet, basename="patient")
+router.register(r'Patient', PatientViewSet)
 router.register(r'Hospital', HospitalViewSet)
 router.register(r'LGA', LGAViewSet)
 router.register(r'State', StateViewSet)
