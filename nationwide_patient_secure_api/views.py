@@ -30,7 +30,7 @@ class AccessLogViewSet(viewsets.ModelViewSet):
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
+ 
 class VitalsViewSet(viewsets.ModelViewSet):
     queryset = Vitals.objects.all()
     serializer_class = VitalsSerializer

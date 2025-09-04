@@ -63,7 +63,7 @@ class Patient(BaseModel):
     dob = models.DateField()
     gender = models.CharField(max_length=10)
     address = models.TextField(null=True)
-
+    patient_picture = models.ImageField(upload_to="patient/photos/", blank=True, null=True)
     def __str__(self):
         return f"Patient name is {self.surname} {self.middle_name} {self.first_name}"
 
