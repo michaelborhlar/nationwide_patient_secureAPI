@@ -44,7 +44,12 @@ INSTALLED_APPS = [
     "corsheaders",
     'rest_framework',
     'nationwide_patient_secure_api',
+    'cloudinary',
+    'cloudinary_storage',
 ]
+
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -57,7 +62,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 ROOT_URLCONF = 'nationwide_patient_secureAPI.urls'
 
 CORS_ALLOW_ALL_ORIGINS = True
