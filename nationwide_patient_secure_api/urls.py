@@ -1,3 +1,4 @@
+from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import PatientViewSet, HospitalViewSet, LGAViewSet, StateViewSet, MedicalRecordViewSet, UserViewSet, VitalsViewSet, AccessLogViewSet
@@ -14,5 +15,7 @@ router.register(r'AccessLog', AccessLogViewSet)
 router.register(r'Vitals', VitalsViewSet)
 
 urlpatterns = [
+    
+    path('admin/', admin.site.urls),
     path('api/', include(router.urls))
 ]
