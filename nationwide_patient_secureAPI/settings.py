@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'cloudinary_storage',
 ]
 
-
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
 MIDDLEWARE = [
@@ -62,7 +62,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage '
+
 ROOT_URLCONF = 'nationwide_patient_secureAPI.urls'
 
 CORS_ALLOW_ALL_ORIGINS = True
