@@ -1,5 +1,6 @@
 from django.db import models
 import uuid
+from django.utils.text import slugify
 from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
@@ -64,10 +65,18 @@ class Patient(BaseModel):
     gender = models.CharField(max_length=10)
     address = models.TextField(null=True)
     patient_picture = models.ImageField(upload_to="patient/photos/", blank=True, null=True)
+    
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base_slug = f"{self.id}-{self.first_name}-{self.surname}"
+            self.slug = slugify(base_slug)
+        super().save(*args, **kwargs)
+    
+    
     def __str__(self):
         return f"Patient name is {self.surname} {self.middle_name} {self.first_name}"
 
-# create models for medical record with foreign key
+# create model for medical record with foreign key
 class MedicalRecord(BaseModel):
     patient = models.OneToOneField(Patient, on_delete=models.CASCADE, related_name="medical_record")
     diagnoses = models.TextField()
@@ -77,7 +86,7 @@ class MedicalRecord(BaseModel):
     def __str__(self):
         return f"{self.patient.surname} {self.patient.middle_name} {self.patient.first_name} Medical Records: {self.diagnoses}, {self.medications}, {self.allergies}, {self.test_results}"
 
-# create vital model
+# create vitals model
 class Vitals(BaseModel):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name="vitals")
     recorded_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="vitals_taken")
@@ -86,7 +95,7 @@ class Vitals(BaseModel):
     temperature = models.FloatField() 
     def __str__(self):
         return f"Vitals for {self.patient.surname} {self.patient.middle_name} {self.patient.first_name} at {self.created_at} and {self.updated_at}"
-# audit/models.py
+# create accesslog model
 class AccessLog(BaseModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="access_logs")
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name="access_logs")
