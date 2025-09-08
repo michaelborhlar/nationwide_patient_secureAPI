@@ -4,6 +4,7 @@ from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import get_user_model
 from .models import Patient, Hospital, LGA, State, AccessLog, MedicalRecord, Vitals, User
@@ -48,7 +49,9 @@ class LoginView(APIView):
 class PatientViewSet(viewsets.ModelViewSet):
     queryset = Patient.objects.all()
     serializer_class = PatientSerializer
-
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['name', 'hospital']
+    
 class HospitalViewSet(viewsets.ModelViewSet):
     queryset = Hospital.objects.all()
     serializer_class = HospitalSerializer
