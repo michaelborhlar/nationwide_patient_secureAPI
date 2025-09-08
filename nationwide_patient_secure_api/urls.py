@@ -17,8 +17,7 @@ router.register(r'Vitals', VitalsViewSet)
 urlpatterns = [
     
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls))
-    path('api/auth/register', RegisterView.as_view(), name= 'register' )
-    path('api/auth/login', LoginView.as_view(), name= 'login')
-
+    path('api/', include(router.urls)),
+    path('api/auth/register', RegisterView.as_view(), name='register'),
+    path('api/auth/login', LoginView.as_view(), name='login'),
 ]
