@@ -3,7 +3,7 @@ from .models import Patient, State, LGA, MedicalRecord, AccessLog, User, Hospita
 from django.contrib.auth import get_user_model, authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
 
-User_1 = get_user_model
+User_1 = get_user_model()
 
 class RegisterSerializer(serializers.ModelSerializer):
 

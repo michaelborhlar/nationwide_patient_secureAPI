@@ -9,7 +9,7 @@ from django.contrib.auth import get_user_model
 from .models import Patient, Hospital, LGA, State, AccessLog, MedicalRecord, Vitals, User
 from .serializers import PatientSerializer, HospitalSerializer, StateSerializer, LGASerializer, AccessLogSerializer, MedicalRecordSerializer, VitalsSerializer, UserSerializer, RegisterSerializer, LoginSerializer
 
-user_1 = get_user_model
+user_1 = get_user_model()
 
 
 # Create your views here.
@@ -22,8 +22,7 @@ class RegisterView(generics.CreateAPIView):
         refresh = RefreshToken.for_user(user)
         self.tokens = {
             'refresh': str(refresh),
-            'access': str(refresh.access_token),
-            
+            'access': str(refresh.access_token),    
         }
     def create(self, request, *args, **kwargs):
         response = super().create(request, *args, **kwargs)
