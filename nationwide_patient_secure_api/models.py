@@ -50,6 +50,7 @@ class User(AbstractUser):
             ("DOCTOR", "Doctor"),
             ("ADMIN", "Admin"),
             ("SUPERADMIN", "SuperAdmin"),
+            
         ],
     )
 

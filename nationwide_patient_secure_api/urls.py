@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import PatientViewSet, HospitalViewSet, LGAViewSet, StateViewSet, MedicalRecordViewSet, UserViewSet, VitalsViewSet, AccessLogViewSet
+from .views import PatientViewSet, HospitalViewSet, LGAViewSet, StateViewSet, MedicalRecordViewSet, UserViewSet, VitalsViewSet, AccessLogViewSet, LoginView, RegisterView
 
 
 router = DefaultRouter()
@@ -18,4 +18,7 @@ urlpatterns = [
     
     path('admin/', admin.site.urls),
     path('api/', include(router.urls))
+    path('api/auth/register', RegisterView.as_view(), name= 'register' )
+    path('api/auth/login', LoginView.as_view(), name= 'login')
+
 ]
