@@ -44,7 +44,38 @@ pip install django
 ## installing django rest framework
 pip install djangorestframework
 
+
+# Install JWT Authentication
+pip install djangorestframework-simplejwt
+
+# Install PostgreSQL adapter for Django
+pip install psycopg2-binary
+
+
+# Handle Cross-Origin Resource Sharing
+pip install django-cors-headers
+
+# For environment variables (instead of hardcoding secrets)
+pip install python-decouple
+
 ## migrage after creating models
 python manage.py makemigrations
 python manage.py migrate
 
+For deployment
+
+# Whitenoise for static files
+pip install whitenoise
+
+# Gunicorn (WSGI server for deployment)
+pip install gunicorn
+
+
+##for deployment to render
+python manage.py collectstatic --noinput
+
+##To save all files so render can make use of them
+pip freeze > requirements.txt
+
+
+web: gunicorn nationwide_patient_secureAPI.wsgi --log-file -
