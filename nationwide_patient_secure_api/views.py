@@ -7,8 +7,8 @@ from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import get_user_model
-from .models import Patient, Hospital, LGA, State, AccessLog, MedicalRecord, Vitals, CustomUser
 from .serializers import PatientSerializer, HospitalSerializer, StateSerializer, LGASerializer, AccessLogSerializer, MedicalRecordSerializer, VitalsSerializer, CustomUserSerializer, RegisterSerializer, LoginSerializer
+from .models import Patient, Hospital, CustomUser, State, LGA, AccessLog, MedicalRecord, Vitals 
 
 User = get_user_model()
 
@@ -71,7 +71,7 @@ class AccessLogViewSet(viewsets.ModelViewSet):
     serializer_class = AccessLogSerializer
 
 class CustomUserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+    queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
  
 class VitalsViewSet(viewsets.ModelViewSet):
