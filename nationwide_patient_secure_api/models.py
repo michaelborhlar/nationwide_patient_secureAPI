@@ -34,7 +34,7 @@ class Hospital(BaseModel):
     def __str__(self):
         return self.name
 
-class CustomUser(AbstractUser):
+class User(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     hospital = models.ForeignKey(
         Hospital,
@@ -84,7 +84,7 @@ class MedicalRecord(BaseModel):
 # create vitals model
 class Vitals(BaseModel):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name="vitals")
-    recorded_by = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True, related_name="vitals_taken")
+    recorded_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="vitals_taken")
     blood_pressure = models.CharField(max_length=20)
     heart_rate = models.IntegerField()
     temperature = models.FloatField() 
@@ -92,7 +92,7 @@ class Vitals(BaseModel):
         return f"Vitals for {self.patient.surname} {self.patient.middle_name} {self.patient.first_name} at {self.created_at} and {self.updated_at}"
 # create accesslog model
 class AccessLog(BaseModel):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="access_logs")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="access_logs")
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name="access_logs")
     action = models.CharField(max_length=50)  # e.g., VIEWED, UPDATED, DELETED
     timestamp = models.DateTimeField(auto_now_add=True)
