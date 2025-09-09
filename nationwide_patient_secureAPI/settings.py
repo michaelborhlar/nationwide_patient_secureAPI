@@ -107,7 +107,7 @@ else:
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
-AUTH_USER_MODEL = "nationwide_patient_secure_api.User"
+AUTH_USER_MODEL = "nationwide_patient_secure_api.CustomUser"
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
