@@ -21,9 +21,9 @@ It provides role-based access for hospitals, doctors, nurses, and admins, ensuri
 - ✅ PostgreSQL database integration  
 - ✅ Custom user model with roles (Nurse, Doctor, Admin, SuperAdmin)  
 - ✅ Models for State, LGA, Hospital, Patient, Medical Records, Vitals, Access Logs  
-- 🔄 Serializers and API endpoints (in progress)  
-- 🔄 Authentication & Role-based Permissions (upcoming)  
-- 🔄 API Deployment (upcoming)  
+- 🔄 Serializers and API endpoints
+- 🔄 Authentication & Role-based Permissions
+- 🔄 API Deployment on render
 
 ---
 
@@ -43,3 +43,8 @@ pip install django
 
 ## installing django rest framework
 pip install djangorestframework
+
+## migrage after creating models
+python manage.py makemigrations
+python manage.py migrate
+
