@@ -15,8 +15,6 @@ from .models import Patient, Hospital, User, State, LGA, AccessLog, MedicalRecor
 class PatientViewSet(viewsets.ModelViewSet):
     queryset = Patient.objects.all()
     serializer_class = PatientSerializer
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['name', 'hospital']
 
 class HospitalViewSet(viewsets.ModelViewSet):
     queryset = Hospital.objects.all()
