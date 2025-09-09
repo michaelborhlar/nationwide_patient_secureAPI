@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import PatientViewSet, HospitalViewSet, LGAViewSet, StateViewSet, MedicalRecordViewSet, CustomUserViewSet, VitalsViewSet, AccessLogViewSet, LoginView, RegisterView
-
+from .models import Patient, Hospital,LGA,State,AccessLog, Vitals,CustomUser,MedicalRecord
 
 router = DefaultRouter()
 router.register(r'Patient', PatientViewSet)
