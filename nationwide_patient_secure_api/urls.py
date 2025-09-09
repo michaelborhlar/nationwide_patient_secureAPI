@@ -10,7 +10,7 @@ router.register(r'Hospital', HospitalViewSet)
 router.register(r'LGA', LGAViewSet)
 router.register(r'State', StateViewSet)
 router.register(r'MedicalRecord', MedicalRecordViewSet)
-router.register(r'User', CustomUserViewSet)
+router.register(r'CustomUser', CustomUserViewSet)
 router.register(r'AccessLog', AccessLogViewSet)
 router.register(r'Vitals', VitalsViewSet)
 
