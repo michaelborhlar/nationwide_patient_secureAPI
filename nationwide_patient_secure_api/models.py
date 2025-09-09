@@ -34,7 +34,7 @@ class Hospital(BaseModel):
     def __str__(self):
         return self.name
 
-class User(AbstractUser):
+class CustomUser(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     hospital = models.ForeignKey(
         Hospital,

@@ -7,15 +7,15 @@ from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import get_user_model
-from .models import Patient, Hospital, LGA, State, AccessLog, MedicalRecord, Vitals, User
-from .serializers import PatientSerializer, HospitalSerializer, StateSerializer, LGASerializer, AccessLogSerializer, MedicalRecordSerializer, VitalsSerializer, UserSerializer, RegisterSerializer, LoginSerializer
+from .models import Patient, Hospital, LGA, State, AccessLog, MedicalRecord, Vitals, CustomUser
+from .serializers import PatientSerializer, HospitalSerializer, StateSerializer, LGASerializer, AccessLogSerializer, MedicalRecordSerializer, VitalsSerializer, CustomUserSerializer, RegisterSerializer, LoginSerializer
 
-user_1 = get_user_model()
+User = get_user_model()
 
 
 # Create your views here.
 class RegisterView(generics.CreateAPIView):
-    queryset = user_1.objects.all()
+    queryset = User.objects.all()
     serializer_class = RegisterSerializer
 
     def perform_create(self, serializer):
@@ -70,9 +70,9 @@ class AccessLogViewSet(viewsets.ModelViewSet):
     queryset = AccessLog.objects.all()
     serializer_class = AccessLogSerializer
 
-class UserViewSet(viewsets.ModelViewSet):
+class CustomUserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = CustomUserSerializer
  
 class VitalsViewSet(viewsets.ModelViewSet):
     queryset = Vitals.objects.all()

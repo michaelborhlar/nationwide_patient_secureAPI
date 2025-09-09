@@ -1,20 +1,20 @@
 from rest_framework import serializers
-from .models import Patient, State, LGA, MedicalRecord, AccessLog, User, Hospital, Vitals
+from .models import Patient, State, LGA, MedicalRecord, AccessLog, CustomUser, Hospital, Vitals
 from django.contrib.auth import get_user_model, authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
 
-User_1 = get_user_model()
+User = get_user_model()
 
 class RegisterSerializer(serializers.ModelSerializer):
 
     password = serializers.CharField(write_only=True, required=True)
     class Meta:
-        model = User_1
+        model = User
         fields = ['id','username','email','password']
 
     def create(self, validated_data):
 
-        user = User_1.objects.create_user(
+        user = User.objects.create_user(
             username = validated_data['username'],
             email = validated_data['email'],
             password = validated_data['password']
@@ -32,9 +32,9 @@ class LoginSerializer(serializers.ModelSerializer):
         if not user:
             raise serializers.ValidationError({'error': "invalid login credentials"})
         return user
-class UserSerializer(serializers.ModelSerializer):
+class CustomUserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
+        model = CustomUser
         fields = "__all__"
 
 class StateSerializer(serializers.ModelSerializer):
