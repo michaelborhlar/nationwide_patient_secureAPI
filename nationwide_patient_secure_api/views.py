@@ -28,10 +28,8 @@ class RegisterView(generics.CreateAPIView):
     def create(self, request, *args, **kwargs):
         response = super().create(request, *args, **kwargs)
         response.data.update(self.tokens)
+        response.data['message'] = "Registered Successfully"
         return response
-
-
-    
 
 class LoginView(APIView):
     serializer_class = LoginSerializer
@@ -42,6 +40,7 @@ class LoginView(APIView):
         user = serializer.validated_data 
         refresh = RefreshToken.for_user(user)
         return Response ({
+            'message': "Login successful"
             'refresh': str(refresh),
             'access': str(refresh.access_token),  
         },    status=status.HTTP_200_OK)
@@ -51,7 +50,7 @@ class PatientViewSet(viewsets.ModelViewSet):
     serializer_class = PatientSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['name', 'hospital']
-    
+
 class HospitalViewSet(viewsets.ModelViewSet):
     queryset = Hospital.objects.all()
     serializer_class = HospitalSerializer
