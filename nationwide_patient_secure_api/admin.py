@@ -1,13 +1,13 @@
 from django.contrib import admin
 from . import models
-from .models import State, LGA, Hospital, CustomUser, Patient, Vitals, AccessLog, MedicalRecord
+from .models import State, LGA, Hospital, User, Patient, Vitals, AccessLog, MedicalRecord
 
 
 models_to_register = [
     models.State,
     models.LGA,
     models.Hospital,
-    models.CustomUser,
+    models.User,
     models.Patient,
     models.Vitals,
     models.AccessLog,
